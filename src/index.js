@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
+import { legacy_createStore as createStore } from 'redux';
+import { Provider } from 'react-redux';
 import './index.css';
 import App from './components/App';
+import reducers from './reducers';
+import middleware from './middleware';
+
+const store = createStore(reducers, middleware);
 
 function ColorfulBorder() {
   return (
@@ -21,7 +27,9 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <ColorfulBorder />
-    <App />
+    <Provider store={store}>
+      <ColorfulBorder />
+      <App />
+    </Provider>
   </React.StrictMode>
 );
