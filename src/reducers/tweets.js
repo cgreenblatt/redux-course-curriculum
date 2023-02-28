@@ -5,14 +5,14 @@ export default function tweetsReducer(state = {}, action) {
     case RECEIVE_TWEETS:
       return action.tweets;
     case TOGGLE_LIKE_TWEET:
-      const { tweetId, authedUser } = action;
+      const { id, authedUser, hasLiked } = action;
       return {
         ...state,
-        [tweetId]: {
-          ...state[tweetId],
-          likes: state[tweetId].likes.includes(authedUser)
-            ? state[tweetId].likes.filter((userId) => userId !== authedUser)
-            : state[tweetId].likes.concat(authedUser),
+        [id]: {
+          ...state[id],
+          likes: hasLiked
+            ? state[id].likes.concat(authedUser)
+            : state[id].likes.filter((userId) => userId !== authedUser),
         },
       };
     default:
