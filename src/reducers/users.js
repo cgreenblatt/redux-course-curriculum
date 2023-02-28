@@ -1,8 +1,8 @@
-export const RECEIVE_USERS = 'RECEIVE_USERS';
+import { RECEIVE_USERS } from '../actions/users';
 
-export function usersReducer(state = {}, action) {
+export default function usersReducer(state = {}, action) {
   switch (action.type) {
-    case 'RECEIVE_USERS':
+    case RECEIVE_USERS:
       return action.users;
     default:
       return state;

@@ -1,9 +1,8 @@
-export const RECEIVE_TWEETS = 'RECEIVE_TWEETS';
+import { RECEIVE_TWEETS } from '../actions/tweets';
 
-export function tweetsReducer(state = {}, action) {
-  console.log('action.tweets', action.tweets);
+export default function tweetsReducer(state = {}, action) {
   switch (action.type) {
-    case 'RECEIVE_TWEETS':
+    case RECEIVE_TWEETS:
       return action.tweets;
     default:
       return state;
