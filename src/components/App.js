@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { handleReceiveData } from '../actions/shared';
 import Tweets from './Tweets';
-import NewTweet from './NewTweet';
+import AddTweet from './AddTweet';
 import NavBar from './NavBar';
 
 export default function App() {
@@ -18,7 +18,7 @@ export default function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Tweets />} />
-          <Route path="/new" element={<NewTweet />} />
+          <Route path="/new" element={<AddTweet />} />
         </Routes>
       </div>
     </Router>
