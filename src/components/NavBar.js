@@ -4,7 +4,7 @@ const style = ({ isActive }) => (isActive ? 'active' : undefined);
 
 export default function NavBar() {
   return (
-    <nav class="nav">
+    <nav className="nav">
       <NavLink to="/" className={style}>
         Home
       </NavLink>
