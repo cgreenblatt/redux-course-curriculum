@@ -19,6 +19,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Tweets />} />
           <Route path="/new" element={<AddTweet />} />
+          <Route path="/tweet/:id" element={<AddTweet />} />
         </Routes>
       </div>
     </Router>
