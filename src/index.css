@@ -38,9 +38,13 @@ body {
   color: var(--white);
 }
 
-a {
+nav > a {
   color: var(--gold);
+}
+
+a {
   text-decoration: none;
+  color: currentColor;
 }
 
 li {
