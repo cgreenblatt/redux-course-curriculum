@@ -1,5 +1,5 @@
 import { showLoading, hideLoading } from 'react-redux-loading-bar';
-import { saveLikeToggle } from '../utils/api';
+import { saveLikeToggle, saveTweet } from '../utils/api';
 export const RECEIVE_TWEETS = 'RECEIVE_TWEETS';
 export const TOGGLE_LIKE_TWEET = 'TOGGLE_LIKE_TWEET';
 export const ADD_TWEET = 'ADD_TWEET';
@@ -27,5 +27,24 @@ function toggleLikeTweet(id, hasLiked, authedUser) {
     id,
     hasLiked,
     authedUser,
+  };
+}
+
+function addTweet(tweet) {
+  return {
+    type: ADD_TWEET,
+    tweet,
+  };
+}
+
+export function handleSaveTweet({ text, replyingTo }, callback) {
+  return (dispatch, getState) => {
+    const { authedUser } = getState();
+    dispatch(showLoading());
+    return saveTweet({ text, author: authedUser, replyingTo }).then((tweet) => {
+      dispatch(hideLoading());
+      dispatch(addTweet(tweet));
+      callback();
+    });
   };
 }

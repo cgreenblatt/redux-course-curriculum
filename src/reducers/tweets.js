@@ -1,4 +1,8 @@
-import { RECEIVE_TWEETS, TOGGLE_LIKE_TWEET } from '../actions/tweets';
+import {
+  ADD_TWEET,
+  RECEIVE_TWEETS,
+  TOGGLE_LIKE_TWEET,
+} from '../actions/tweets';
 
 export default function tweetsReducer(state = {}, action) {
   switch (action.type) {
@@ -15,6 +19,21 @@ export default function tweetsReducer(state = {}, action) {
             : state[id].likes.filter((userId) => userId !== authedUser),
         },
       };
+    case ADD_TWEET:
+      const replyingTo = action.tweet.replyingTo;
+      return replyingTo
+        ? {
+            ...state,
+            [action.tweet.id]: action.tweet,
+            [replyingTo]: {
+              ...state[replyingTo],
+              replies: state[replyingTo].replies.concat(action.tweet.id),
+            },
+          }
+        : {
+            ...state,
+            [action.tweet.id]: action.tweet,
+          };
     default:
       return state;
   }
